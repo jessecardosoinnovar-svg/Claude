@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Jesse José</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{
+    --verde: #4cd17a;        /* verde mais claro */
+    --verde-claro: #c9f5d7;
+    --verde-escuro: #1f8f4a;
+    --texto: #0f3b22;
+    --branco: #ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef3ef;font-family:Montserrat,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px 16px}
+  .dica{max-width:420px;font-size:13px;color:#33493b;text-align:center;line-height:1.4}
+
+  .card{width:100%;max-width:420px;background:linear-gradient(180deg,var(--verde-claro) 0%,var(--verde) 55%,var(--verde-escuro) 100%);
+        border-radius:24px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.18);color:var(--texto)}
+
+  /* MOTO EM CIMA */
+  .moto{position:relative;height:250px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+        background:radial-gradient(circle at 50% 60%,#fff 0%,rgba(255,255,255,.5) 45%,transparent 70%)}
+  .moto img{max-width:92%;max-height:230px;object-fit:contain;filter:drop-shadow(0 10px 12px rgba(0,0,0,.25))}
+  .placeholder{border:2px dashed var(--verde-escuro);border-radius:14px;padding:18px 22px;font-weight:700;font-size:14px;text-align:center;background:rgba(255,255,255,.6)}
+  .modelo{text-align:center;font-weight:900;font-size:26px;letter-spacing:.5px;text-transform:uppercase;padding:4px 16px 12px}
+
+  /* VALORES UM EMBAIXO DO OUTRO */
+  .valores{display:flex;flex-direction:column;gap:10px;padding:0 20px}
+  .valor{background:var(--branco);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 8px rgba(0,0,0,.08)}
+  .valor .rotulo{font-size:13px;font-weight:700;text-transform:uppercase;color:var(--verde-escuro)}
+  .valor .preco{font-size:22px;font-weight:900}
+
+  /* VENDEDOR */
+  .vendedor{display:flex;align-items:center;gap:14px;margin:18px 20px 20px;padding:12px;background:rgba(255,255,255,.18);border-radius:18px;color:var(--branco)}
+  .foto{width:84px;height:84px;flex:none;border-radius:50%;border:4px solid var(--branco);background:var(--verde-claro);overflow:hidden;cursor:pointer;
+        display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--verde-escuro);text-align:center}
+  .foto img{width:100%;height:100%;object-fit:cover}
+  .vendedor small{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;opacity:.9;font-weight:700}
+  .vendedor h2{font-size:22px;font-weight:900;line-height:1.1}
+  .tel{margin-top:6px;display:inline-flex;align-items:center;gap:6px;background:var(--branco);color:var(--verde-escuro);font-weight:800;font-size:16px;padding:6px 12px;border-radius:999px}
+  .tel svg{width:16px;height:16px;fill:currentColor}
+
+  [contenteditable]:focus{outline:2px dashed rgba(0,0,0,.35);outline-offset:2px;border-radius:4px}
+  button{font-family:inherit;font-weight:800;font-size:15px;background:var(--verde-escuro);color:#fff;border:0;border-radius:12px;padding:12px 22px;cursor:pointer}
+  input[type=file]{display:none}
+</style>
+</head>
+<body>
+
+<p class="dica">Toque na <b>moto</b> ou no <b>círculo da foto</b> para colocar as imagens. Toque nos textos e valores para editar. Depois clique em <b>Baixar card</b>.</p>
+
+<div class="card" id="card">
+  <div class="moto" id="motoBox" title="Clique para escolher a foto da moto">
+    <div class="placeholder">📷 Toque para colocar a foto da moto</div>
+  </div>
+  <div class="modelo" contenteditable="true">Modelo da Moto</div>
+
+  <div class="valores">
+    <div class="valor"><span class="rotulo" contenteditable="true">À vista</span><span class="preco" contenteditable="true">R$ 00.000</span></div>
+    <div class="valor"><span class="rotulo" contenteditable="true">Entrada</span><span class="preco" contenteditable="true">R$ 0.000</span></div>
+    <div class="valor"><span class="rotulo" contenteditable="true">Parcelas</span><span class="preco" contenteditable="true">48x R$ 000</span></div>
+  </div>
+
+  <div class="vendedor">
+    <div class="foto" id="fotoBox" title="Clique para escolher sua foto">Sua<br>foto</div>
+    <div>
+      <small>Vendedor</small>
+      <h2>Jesse José</h2>
+      <span class="tel">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+        (75) 98852-9583
+      </span>
+    </div>
+  </div>
+</div>
+
+<button id="baixar">Baixar card</button>
+
+<input type="file" id="motoInput" accept="image/*">
+<input type="file" id="fotoInput" accept="image/*">
+
+<script>
+  function carregar(input, box) {
+    input.addEventListener('change', () => {
+      const f = input.files && input.files[0];
+      if (!f) return;
+      const r = new FileReader();
+      r.onload = e => { box.innerHTML = '<img alt="" src="' + e.target.result + '">'; };
+      r.readAsDataURL(f);
+    });
+  }
+  const motoBox = document.getElementById('motoBox');
+  const fotoBox = document.getElementById('fotoBox');
+  motoBox.onclick = () => document.getElementById('motoInput').click();
+  fotoBox.onclick = () => document.getElementById('fotoInput').click();
+  carregar(document.getElementById('motoInput'), motoBox);
+  carregar(document.getElementById('fotoInput'), fotoBox);
+
+  document.getElementById('baixar').onclick = async () => {
+    document.activeElement && document.activeElement.blur();
+    const canvas = await html2canvas(document.getElementById('card'), {scale: 3, backgroundColor: null});
+    const a = document.createElement('a');
+    a.download = 'card-jesse-jose.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  };
+</script>
+</body>
+</html>
